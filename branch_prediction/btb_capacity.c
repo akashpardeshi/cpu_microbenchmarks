@@ -14,6 +14,7 @@ int main()
 
         start = clock();
         for (i = 0; i < NUM_ITER; i++) {
+                /* update .rept to match num_branches */
                 asm (".rept     1\n"
                      "bl        _foo\n"
                      ".endr" 

@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 
 def plot(x_data, y_data, x_scale, y_scale, title, x_label, y_label):
-    # plt.plot(x_data, y_data, '.')
     plt.plot(x_data, y_data, '.-')
     plt.xscale(x_scale)
     plt.xscale('log', base=2) if x_scale == 'log' else plt.xscale(x_scale)
