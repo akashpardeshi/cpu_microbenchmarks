@@ -8,6 +8,21 @@
 
 #define NUM_ITER        1E3
 
+/*
+ * Translation Lookaside Buffer (TLB) Capacity Test:
+ *
+ * The TLB is a structure used to cache virtual-to-physical address translations
+ * to avoid slow page table walks. The TLB is organized as a set-associative cache.
+ *
+ * This test aims to measure the number of entries in the L1 data TLB.
+ *
+ * Suppose the TLB has N entries. If we access k sequential pages in virtual memory,
+ * we will sequentially fill k entries in the TLB. When k > N, k - N translations
+ * will be capacity misses and will evict older entries from the TLB. This causes
+ * those earlier virtual addresses to miss in the TLB, resulting in slower address
+ * translations which slows down program execution. By measuring at which value of k
+ * program execution starts to slow down, we can estimate the value of N.
+ */
 int main()
 {
         const int max_pages = 512;      /* 512 for L1 TLB, 4096 for L2 TLB */

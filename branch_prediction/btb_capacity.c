@@ -5,6 +5,22 @@
 
 void foo() {}
 
+/*
+ * Branch Target Buffer (BTB) Capacity Test:
+ *
+ * The BTB is a structure used to cache branch target addresses so that subsequent
+ * instructions can be fetched as soon as possible. The BTB is organized as a
+ * set-associative cache.
+ *
+ * This test aims to measure the number of entries in the BTB.
+ *
+ * Suppose the BTB has N entries. If we execute k branches at sequential addresses, we
+ * will sequentially fill k entries in the BTB. When k > N, k - N branches will be
+ * capacity misses and will evict older entries from the BTB. This causes those earlier
+ * branches to miss in the BTB, resulting in front-end stalls which slows down program
+ * execution. By measuring at which value of k program execution starts to slow down,
+ * we can estimate the value of N.
+ */
 int main()
 {
         const int num_branches = 1;  /* vary from 1..8192 */
